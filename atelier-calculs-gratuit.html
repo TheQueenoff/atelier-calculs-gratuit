@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>L'Atelier des Calculs · L'École des Infirmiers</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --navy: #0a1929;
+    --navy-soft: #1e3a5f;
+    --navy-light: #e8eef5;
+    --white: #ffffff;
+    --cream: #faf8f3;
+    --gold: #c8a85b;
+    --gold-light: #f5e6b8;
+    --red: #c83b3b;
+    --green: #2d7a4f;
+    --green-light: #d4f1e0;
+    --grey: #6b7280;
+    --grey-light: #d1d5db;
+    --grey-50: #f9fafb;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+  
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+    padding: 20px 16px 60px;
+    line-height: 1.5;
+  }
+  
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  
+  /* ─── HEADER ─────────────────────────────── */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .brand {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding: 6px 14px;
+    border: 1px solid var(--navy);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--grey);
+    font-size: 17px;
+    margin-top: 8px;
+  }
+  
+  /* ─── PROGRESSION DASHBOARD ──────────────── */
+  .dashboard {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .stat {
+    text-align: center;
+    padding: 0 8px;
+  }
+  .stat + .stat {
+    border-left: 1px solid var(--grey-light);
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--navy);
+  }
+  .stat-value small {
+    font-size: 14px;
+    color: var(--grey);
+  }
+  
+  /* ─── BADGES ─────────────────────────────── */
+  .badges-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: var(--grey-light);
+    color: var(--grey);
+    border: 2px solid var(--grey-light);
+    transition: all 0.3s;
+    cursor: help;
+  }
+  .badge.unlocked {
+    background: var(--gold-light);
+    color: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 2px 8px rgba(200, 168, 91, 0.3);
+  }
+  
+  /* ─── DISCLAIMER ─────────────────────────── */
+  .disclaimer {
+    background: #fef9e7;
+    border: 1px solid var(--gold);
+    border-left: 4px solid var(--gold);
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 12px;
+    color: #78350f;
+    line-height: 1.6;
+    border-radius: 2px;
+  }
+  .disclaimer strong {
+    color: #78350f;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  
+  /* ─── SECTION TITLE ──────────────────────── */
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    margin: 32px 0 16px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .section-title em {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--grey);
+    font-weight: 400;
+  }
+  
+  /* ─── CAS LIST ──────────────────────────── */
+  .cas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  
+  .cas-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 4px;
+    padding: 18px 22px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .cas-card:hover {
+    border-color: var(--navy);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 25, 41, 0.08);
+  }
+  .cas-card.completed {
+    border-color: var(--green);
+    background: var(--green-light);
+  }
+  
+  .cas-number {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 50px;
+    text-align: center;
+  }
+  .cas-info {
+    flex: 1;
+  }
+  .cas-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .cas-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .cas-status {
+    font-size: 22px;
+    color: var(--grey-light);
+  }
+  .cas-card.completed .cas-status { color: var(--green); }
+  
+  /* ─── EXERCICE OVERLAY ───────────────────── */
+  .exercice-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 25, 41, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .exercice-overlay.show {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .exercice-modal {
+    background: var(--white);
+    border-radius: 6px;
+    max-width: 720px;
+    width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .exercice-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .exercice-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+  }
+  .exercice-title-num {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .exercice-close {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    transition: all 0.2s;
+  }
+  .exercice-close:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  
+  .exercice-body {
+    padding: 28px;
+  }
+  
+  /* ─── ÉNONCÉ ─────────────────────────────── */
+  .enonce {
+    background: var(--cream);
+    border-left: 4px solid var(--navy);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    border-radius: 2px;
+  }
+  .enonce-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .enonce-text {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--navy);
+  }
+  .enonce-text strong {
+    color: var(--navy);
+    background: var(--gold-light);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .enonce-prescription {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px dashed var(--gold);
+    border-radius: 2px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--navy);
+    white-space: pre-line;
+  }
+  .enonce-prescription strong {
+    background: none;
+    padding: 0;
+    color: var(--gold);
+  }
+  
+  /* ─── QUESTION ───────────────────────────── */
+  .question-block {
+    margin-bottom: 20px;
+  }
+  .question-block label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .question-block .question-text {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .input-with-unit {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+  }
+  .input-with-unit input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--grey-light);
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--navy);
+    background: var(--white);
+    transition: all 0.15s;
+  }
+  .input-with-unit input:focus {
+    outline: none;
+    border-color: var(--navy);
+    background: var(--cream);
+  }
+  .input-with-unit .unit {
+    padding: 12px 18px;
+    background: var(--navy-light);
+    border: 1.5px solid var(--grey-light);
+    border-radius: 0 2px 2px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+  }
+  
+  /* ─── BUTTON ─────────────────────────────── */
+  .btn-verify {
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 16px 24px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-top: 8px;
+    transition: all 0.15s;
+  }
+  .btn-verify:hover {
+    background: var(--navy-soft);
+    transform: translateY(-1px);
+  }
+  
+  /* ─── RÉSULTAT VÉRIFICATION ──────────────── */
+  .verdict {
+    display: none;
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 4px;
+    border-left: 4px solid;
+  }
+  .verdict.show { display: block; }
+  
+  .verdict.success {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .verdict.failure {
+    background: #fef2f2;
+    border-color: var(--red);
+  }
+  
+  .verdict-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+  .verdict.success .verdict-icon { color: var(--green); }
+  .verdict.failure .verdict-icon { color: var(--red); }
+  
+  .verdict-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--navy);
+  }
+  .verdict-detail {
+    font-size: 13px;
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+  
+  .correction {
+    background: var(--white);
+    padding: 18px 20px;
+    border-radius: 2px;
+    margin-top: 14px;
+    border: 1px solid var(--grey-light);
+  }
+  .correction-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--grey-light);
+  }
+  .correction-step {
+    margin-bottom: 10px;
+    padding-left: 28px;
+    position: relative;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+  .correction-step-num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .correction-tip {
+    background: var(--cream);
+    padding: 12px 16px;
+    margin-top: 14px;
+    border-radius: 2px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .btn-retry, .btn-next {
+    flex: 1;
+    padding: 13px 20px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    border: none;
+    transition: all 0.15s;
+  }
+  .btn-retry {
+    background: var(--white);
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+  }
+  .btn-retry:hover { background: var(--navy-light); }
+  .btn-next {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-next:hover { background: var(--navy-soft); }
+  
+  /* ─── FOOTER ─────────────────────────────── */
+  .footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--grey-light);
+    text-align: center;
+    font-size: 11px;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+  .footer-disclaimer {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #7f1d1d;
+    padding: 14px 18px;
+    border-radius: 2px;
+    font-size: 11px;
+    margin-bottom: 16px;
+    text-align: left;
+    line-height: 1.6;
+  }
+  .footer-disclaimer strong {
+    color: #991b1b;
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  
+  /* ─── BADGE ANIMATION ────────────────────── */
+  @keyframes badgePop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .badge-popup {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 28px;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    gap: 14px;
+  }
+  .badge-popup.show {
+    display: flex;
+    animation: badgePop 0.5s ease-out;
+  }
+  .badge-popup-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .badge-popup-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .badge-popup-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  /* ─── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 600px) {
+    body { padding: 16px 12px 40px; }
+    h1 { font-size: 32px; }
+    .dashboard { grid-template-columns: 1fr; gap: 16px; padding: 18px; }
+    .stat + .stat { border-left: none; border-top: 1px solid var(--grey-light); padding-top: 16px; }
+    .exercice-modal { margin: 0; border-radius: 0; min-height: 100vh; }
+    .exercice-body, .exercice-header { padding: 20px 18px; }
+    .cas-card { padding: 14px 16px; }
+    .cas-title { font-size: 16px; }
+    .cas-number { font-size: 22px; width: 38px; }
+    .section-title { 
+      flex-direction: column; 
+      align-items: flex-start; 
+      gap: 4px; 
+      font-size: 20px;
+    }
+    .cas-meta {
+      flex-wrap: wrap;
+      gap: 6px 12px;
+    }
+  }
+  
+  /* ─── PETITS ÉCRANS (iPhone SE, vieux Android) ─── */
+  @media (max-width: 400px) {
+    body { padding: 12px 8px 30px; }
+    .container { max-width: 100%; }
+    h1 { font-size: 26px; letter-spacing: -1px; }
+    .tagline { font-size: 14px; }
+    .brand { font-size: 9px; padding: 5px 12px; }
+    .header { margin-bottom: 20px; padding-bottom: 16px; }
+    
+    .dashboard { padding: 14px; gap: 12px; }
+    .stat-value { font-size: 28px; }
+    .stat-label { font-size: 9px; letter-spacing: 1.5px; }
+    
+    .disclaimer { padding: 12px 14px; font-size: 11px; }
+    
+    .section-title { 
+      font-size: 18px; 
+      margin: 24px 0 12px;
+    }
+    .section-title em { font-size: 12px; }
+    
+    .cas-card { 
+      padding: 12px 14px; 
+      gap: 10px;
+    }
+    .cas-number { font-size: 20px; width: 32px; }
+    .cas-title { font-size: 15px; line-height: 1.3; margin-bottom: 6px; }
+    .cas-meta { 
+      font-size: 10px; 
+      gap: 4px 10px;
+      letter-spacing: 0.3px;
+    }
+    .cas-status { font-size: 18px; }
+    
+    .exercice-header { padding: 16px 14px; }
+    .exercice-title { font-size: 17px; line-height: 1.3; }
+    .exercice-body { padding: 16px 14px; }
+    .enonce { padding: 14px 16px; }
+    .enonce-text { font-size: 14px; line-height: 1.6; }
+    .enonce-prescription { font-size: 12px; padding: 10px 12px; }
+    .question-block .question-text { font-size: 13px; }
+    .input-with-unit input { padding: 10px 12px; font-size: 14px; }
+    .input-with-unit .unit { padding: 10px 12px; font-size: 12px; }
+    .btn-verify { padding: 13px 18px; font-size: 11px; letter-spacing: 1.8px; }
+    
+    .verdict { padding: 16px 18px; }
+    .verdict-title { font-size: 18px; }
+    .correction { padding: 14px 16px; }
+    .correction-step { font-size: 13px; padding-left: 24px; }
+    .correction-tip { font-size: 13px; padding: 10px 14px; }
+    
+    .footer { font-size: 10px; margin-top: 28px; }
+    .footer-disclaimer { padding: 12px 14px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">L'École des Infirmiers</div>
+    <h1>L'<em>Atelier</em> des Calculs</h1>
+    <div class="tagline">« Entraîne-toi aux calculs de doses comme en partiel »</div>
+  </header>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>⚠ Outil pédagogique d'entraînement</strong>
+    Cet atelier est conçu <strong>exclusivement</strong> pour l'apprentissage des étudiant·e·s en soins infirmiers. Les cas présentés sont fictifs. <strong>Cet outil ne doit JAMAIS être utilisé pour le calcul de doses sur un patient réel.</strong> En service, applique toujours la règle des 5B et réfère-toi à la prescription médicale.
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+    <div class="stat">
+      <div class="stat-label">Progression</div>
+      <div class="stat-value"><span id="stat-done">0</span><small>/3</small></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Score moyen</div>
+      <div class="stat-value"><span id="stat-score">—</span><small>%</small></div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Badge</div>
+      <div class="badges-row">
+        <div class="badge" id="badge-1" title="Premier pas — 1 cas réussi">🩺</div>
+        <div class="badge" id="badge-2" title="Apprenti·e — 3 cas réussis">📚</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAS -->
+  <h2 class="section-title">Pour commencer <em>· 3 cas pour découvrir la méthode</em></h2>
+  
+  <div class="cas-list">
+    <div class="cas-card" data-cas="1" onclick="openCas(1)">
+      <div class="cas-number">01</div>
+      <div class="cas-info">
+        <div class="cas-title">Perfusion simple de NaCl</div>
+        <div class="cas-meta">
+          <span>🟢 Débutant</span>
+          <span>Médecine</span>
+          <span>Perfusion</span>
+        </div>
+      </div>
+      <div class="cas-status">→</div>
+    </div>
+    
+    <div class="cas-card" data-cas="2" onclick="openCas(2)">
+      <div class="cas-number">02</div>
+      <div class="cas-info">
+        <div class="cas-title">SAP Insuline en endocrinologie</div>
+        <div class="cas-meta">
+          <span>🟡 Intermédiaire</span>
+          <span>Endocrinologie</span>
+          <span>SAP</span>
+        </div>
+      </div>
+      <div class="cas-status">→</div>
+    </div>
+    
+    <div class="cas-card" data-cas="3" onclick="openCas(3)">
+      <div class="cas-number">03</div>
+      <div class="cas-info">
+        <div class="cas-title">Lidocaïne pour anesthésie locale</div>
+        <div class="cas-meta">
+          <span>🟢 Débutant</span>
+          <span>Bloc opératoire</span>
+          <span>Pourcentage</span>
+        </div>
+      </div>
+      <div class="cas-status">→</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-disclaimer">
+      <strong>⚠ Cadre légal</strong>
+      L'Atelier des Calculs est un outil pédagogique d'entraînement destiné aux étudiant·e·s en soins infirmiers (IFSI). Les cas sont fictifs et créés à des fins d'apprentissage. <strong>Cet outil n'a pas vocation à être utilisé en pratique clinique sur des patients réels.</strong> L'École des Infirmiers décline toute responsabilité en cas d'usage non conforme à sa destination pédagogique.
+    </div>
+    <strong>L'École des Infirmiers · NurseSimPro</strong><br>
+    Sources : OMéDIT · ANSM · Vidal · Référentiel infirmier 2009<br>
+    Outil pédagogique · Mise à jour 2026
+  </footer>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- EXERCICE MODAL                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="exercice-overlay" id="exercice-overlay">
+  <div class="exercice-modal">
+    
+    <div class="exercice-header">
+      <div class="exercice-title">
+        Cas <span class="exercice-title-num" id="exo-num">01</span> · <span id="exo-titre">—</span>
+      </div>
+      <button class="exercice-close" onclick="closeExercice()">×</button>
+    </div>
+    
+    <div class="exercice-body">
+      
+      <div class="enonce">
+        <div class="enonce-label">📋 Situation clinique fictive</div>
+        <div class="enonce-text" id="exo-enonce"></div>
+        <div class="enonce-prescription" id="exo-prescription"></div>
+      </div>
+      
+      <div id="exo-questions"></div>
+      
+      <button class="btn-verify" id="btn-verifier" onclick="verifier()">Vérifier ma réponse</button>
+      
+      <div class="verdict" id="verdict">
+        <div class="verdict-icon" id="verdict-icon">✓</div>
+        <div class="verdict-title" id="verdict-title">Réponse correcte</div>
+        <div class="verdict-detail" id="verdict-detail"></div>
+        
+        <div class="correction">
+          <div class="correction-title">📖 La méthode pas à pas</div>
+          <div id="correction-steps"></div>
+          <div class="correction-tip" id="correction-tip"></div>
+        </div>
+        
+        <div class="actions">
+          <button class="btn-retry" onclick="retry()">Réessayer</button>
+          <button class="btn-next" onclick="closeExercice()">Continuer</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- BADGE POPUP -->
+<div class="badge-popup" id="badge-popup">
+  <div class="badge-popup-icon" id="badge-popup-icon">🩺</div>
+  <div>
+    <div class="badge-popup-title">Badge débloqué</div>
+    <div class="badge-popup-name" id="badge-popup-name"></div>
+  </div>
+</div>
+
+<script>
+  // ═══════════════════════════════════════════
+  // BANQUE DE CAS — 3 cas gratuits
+  // Calculs vérifiés mathématiquement
+  // Sources : OMéDIT, ANSM, Vidal
+  // ═══════════════════════════════════════════
+  const CAS = {
+    1: {
+      titre: "Perfusion simple de NaCl",
+      enonce: "M. Dupont, 65 ans, hospitalisé en service de médecine pour <strong>déshydratation</strong>. Le médecin prescrit une perfusion d'entretien. Tu utilises une <strong>tubulure macro-gouttes (20 gtt/mL)</strong>.",
+      prescription: "📝 <strong>Prescription :</strong>\n500 mL de NaCl 0,9%\nà passer en 8 heures",
+      questions: [
+        { id: "q1", label: "Question 1", text: "Quel est le débit en mL/h ?", unit: "mL/h", reponse: 62.5, tolerance: 5 },
+        { id: "q2", label: "Question 2", text: "Quel est le débit en gouttes/min ?", unit: "gtt/min", reponse: 20.83, tolerance: 5 }
+      ],
+      correction: [
+        "Volume total = <strong>500 mL</strong>, durée = <strong>8h</strong> (= 480 min)",
+        "Débit mL/h = 500 ÷ 8 = <strong>62,5 mL/h</strong>",
+        "Débit gtt/min = (500 × 20) ÷ 480 = <strong>20,83 gtt/min</strong> (≈ 21 gtt/min)"
+      ],
+      tip: "💡 La méthode L'École : pour une perfusion sans médicament ajouté, débit (mL/h) = Volume ÷ Durée. Aussi simple que ça."
+    },
+    2: {
+      titre: "SAP Insuline en endocrinologie",
+      enonce: "Mme Bernard, 58 ans, hospitalisée pour <strong>décompensation diabétique acidocétosique</strong>. Le médecin prescrit une SAP d'insuline rapide selon le <strong>protocole standard du service</strong>.",
+      prescription: "📝 <strong>Prescription :</strong>\n50 UI d'Actrapid dans 50 mL de NaCl 0,9%\nDébit prescrit : 4 UI/h",
+      questions: [
+        { id: "q1", label: "Question 1", text: "Quelle est la concentration de la seringue en UI/mL ?", unit: "UI/mL", reponse: 1, tolerance: 5 },
+        { id: "q2", label: "Question 2", text: "À quel débit programmer le PSE en mL/h ?", unit: "mL/h", reponse: 4, tolerance: 5 }
+      ],
+      correction: [
+        "Concentration = 50 UI ÷ 50 mL = <strong>1 UI/mL</strong>",
+        "Le PSE délivre des mL/h, pas des UI/h",
+        "Débit PSE = 4 UI/h ÷ 1 UI/mL = <strong>4 mL/h</strong>"
+      ],
+      tip: "💡 La méthode L'École : avec le protocole 50 UI / 50 mL (= 1 UI/mL), le débit mL/h = la dose en UI/h. Repère à retenir absolument."
+    },
+    3: {
+      titre: "Lidocaïne pour anesthésie locale",
+      enonce: "M. Lefèvre, 45 ans, doit bénéficier d'une <strong>petite intervention sous anesthésie locale</strong> au bloc opératoire.",
+      prescription: "📝 <strong>Prescription :</strong>\n5 mL de Lidocaïne à 2%",
+      questions: [
+        { id: "q1", label: "Question 1", text: "Concentration de la lidocaïne 2% en mg/mL ?", unit: "mg/mL", reponse: 20, tolerance: 5 },
+        { id: "q2", label: "Question 2", text: "Combien de mg le patient reçoit au total ?", unit: "mg", reponse: 100, tolerance: 5 }
+      ],
+      correction: [
+        "Règle universelle : <strong>% × 10 = mg/mL</strong>",
+        "Lidocaïne 2% → 2 × 10 = <strong>20 mg/mL</strong>",
+        "Dose totale = 20 mg/mL × 5 mL = <strong>100 mg</strong>"
+      ],
+      tip: "💡 Le réflexe pourcentage : multiplier par 10. Marche pour tous : NaCl 0,9% = 9 mg/mL, G5% = 50 mg/mL, Calcium 10% = 100 mg/mL."
+    }
+  };
+  
+  // ═══════════════════════════════════════════
+  // BADGES
+  // ═══════════════════════════════════════════
+  const BADGES = {
+    1: { icon: "🩺", name: "Premier pas", desc: "1 cas réussi" },
+    2: { icon: "📚", name: "Apprenti·e", desc: "3 cas réussis" }
+  };
+  
+  // ═══════════════════════════════════════════
+  // STATE
+  // ═══════════════════════════════════════════
+  let state = {
+    completed: {},
+    currentCas: null,
+    badges: []
+  };
+  
+  try {
+    const saved = localStorage.getItem('atelier-calculs-gratuit-state');
+    if (saved) state = JSON.parse(saved);
+  } catch(e) {}
+  
+  function saveState() {
+    try {
+      localStorage.setItem('atelier-calculs-gratuit-state', JSON.stringify(state));
+    } catch(e) {}
+  }
+  
+  // ═══════════════════════════════════════════
+  // UI UPDATE
+  // ═══════════════════════════════════════════
+  function updateUI() {
+    document.querySelectorAll('.cas-card').forEach(card => {
+      const id = parseInt(card.dataset.cas);
+      if (state.completed[id]) {
+        card.classList.add('completed');
+        card.querySelector('.cas-status').textContent = '✓';
+      }
+    });
+    
+    const done = Object.keys(state.completed).length;
+    document.getElementById('stat-done').textContent = done;
+    
+    if (done > 0) {
+      const avg = Object.values(state.completed).reduce((a, b) => a + b, 0) / done;
+      document.getElementById('stat-score').textContent = Math.round(avg);
+    }
+    
+    state.badges.forEach(b => {
+      const el = document.getElementById('badge-' + b);
+      if (el) el.classList.add('unlocked');
+    });
+  }
+  
+  // ═══════════════════════════════════════════
+  // OPEN EXERCICE
+  // ═══════════════════════════════════════════
+  function openCas(num) {
+    const cas = CAS[num];
+    if (!cas) return;
+    
+    state.currentCas = num;
+    
+    document.getElementById('exo-num').textContent = num.toString().padStart(2, '0');
+    document.getElementById('exo-titre').textContent = cas.titre;
+    document.getElementById('exo-enonce').innerHTML = cas.enonce;
+    document.getElementById('exo-prescription').innerHTML = cas.prescription;
+    
+    const qContainer = document.getElementById('exo-questions');
+    qContainer.innerHTML = cas.questions.map(q => `
+      <div class="question-block">
+        <label>${q.label}</label>
+        <div class="question-text">${q.text}</div>
+        <div class="input-with-unit">
+          <input type="number" id="ans-${q.id}" step="0.01" placeholder="Ta réponse..." />
+          <div class="unit">${q.unit}</div>
+        </div>
+      </div>
+    `).join('');
+    
+    document.getElementById('verdict').classList.remove('show');
+    document.getElementById('btn-verifier').style.display = 'block';
+    
+    document.getElementById('exercice-overlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeExercice() {
+    document.getElementById('exercice-overlay').classList.remove('show');
+    document.body.style.overflow = '';
+    updateUI();
+  }
+  
+  function retry() {
+    document.getElementById('verdict').classList.remove('show');
+    document.getElementById('btn-verifier').style.display = 'block';
+    CAS[state.currentCas].questions.forEach(q => {
+      document.getElementById('ans-' + q.id).value = '';
+    });
+  }
+  
+  // ═══════════════════════════════════════════
+  // VÉRIFICATION
+  // ═══════════════════════════════════════════
+  function verifier() {
+    const cas = CAS[state.currentCas];
+    let correct = 0;
+    let details = [];
+    
+    cas.questions.forEach(q => {
+      const userAns = parseFloat(document.getElementById('ans-' + q.id).value);
+      if (isNaN(userAns)) {
+        details.push({ q: q, user: null, ok: false });
+        return;
+      }
+      const ecart = Math.abs((userAns - q.reponse) / q.reponse) * 100;
+      const ok = ecart <= q.tolerance;
+      if (ok) correct++;
+      details.push({ q: q, user: userAns, ok: ok, ecart: ecart });
+    });
+    
+    const score = Math.round((correct / cas.questions.length) * 100);
+    const allCorrect = correct === cas.questions.length;
+    
+    const verdict = document.getElementById('verdict');
+    verdict.className = 'verdict show ' + (allCorrect ? 'success' : 'failure');
+    document.getElementById('verdict-icon').textContent = allCorrect ? '✓' : '✗';
+    
+    if (allCorrect) {
+      document.getElementById('verdict-title').textContent = 'Bravo, toutes les réponses sont correctes !';
+      document.getElementById('verdict-detail').textContent = 'Tu maîtrises ce type de calcul.';
+    } else {
+      document.getElementById('verdict-title').textContent = correct > 0 
+        ? `${correct} bonne(s) réponse(s) sur ${cas.questions.length}` 
+        : 'Pas encore — essaie à nouveau';
+      const detailText = details.map(d => {
+        if (d.user === null) return `${d.q.label} : réponse manquante`;
+        if (d.ok) return `${d.q.label} : ✓ ${d.user} ${d.q.unit}`;
+        return `${d.q.label} : ta réponse ${d.user} — attendue ${d.q.reponse} ${d.q.unit} (écart ${d.ecart.toFixed(1)}%)`;
+      }).join(' · ');
+      document.getElementById('verdict-detail').textContent = detailText;
+    }
+    
+    document.getElementById('correction-steps').innerHTML = cas.correction.map((step, i) => `
+      <div class="correction-step">
+        <div class="correction-step-num">${i+1}</div>
+        ${step}
+      </div>
+    `).join('');
+    document.getElementById('correction-tip').innerHTML = cas.tip;
+    
+    if (allCorrect) {
+      if (!state.completed[state.currentCas] || state.completed[state.currentCas] < score) {
+        state.completed[state.currentCas] = score;
+      }
+      checkBadges();
+      saveState();
+    }
+    
+    document.getElementById('btn-verifier').style.display = 'none';
+  }
+  
+  // ═══════════════════════════════════════════
+  // BADGES
+  // ═══════════════════════════════════════════
+  function checkBadges() {
+    const done = Object.keys(state.completed).length;
+    
+    if (done >= 1 && !state.badges.includes(1)) {
+      state.badges.push(1);
+      showBadge(1);
+    }
+    if (done >= 3 && !state.badges.includes(2)) {
+      state.badges.push(2);
+      setTimeout(() => showBadge(2), 500);
+    }
+  }
+  
+  function showBadge(id) {
+    const b = BADGES[id];
+    document.getElementById('badge-popup-icon').textContent = b.icon;
+    document.getElementById('badge-popup-name').textContent = b.name;
+    const popup = document.getElementById('badge-popup');
+    popup.classList.add('show');
+    setTimeout(() => popup.classList.remove('show'), 3500);
+  }
+  
+  // ═══════════════════════════════════════════
+  // INIT
+  // ═══════════════════════════════════════════
+  updateUI();
+</script>
+
+</body>
+</html>
